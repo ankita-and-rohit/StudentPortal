@@ -101,7 +101,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
       <h7 class="navbar-brand">Student Dashboard</h7>
@@ -122,7 +121,7 @@
       <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
       </div>
-      <button class="tablinks" onclick="openCity(event, 'Profile')">Profile</button>
+      <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Profile')">Profile</button>
       <button class="tablinks" onclick="openCity(event, 'Courses')">Courses</button>
     </div>
 
@@ -142,6 +141,33 @@
       </div>
 
     </div>
+
+     <div id="Courses" class="tabcontent">
+      <div class="panel-group">
+        <div class="panel panel-success">
+          <div class="panel-heading">Courses</div>
+          <div class="panel-body">
+
+            <ul class="list-group">
+	      {% for item in courses %}
+	      <li class="list-group-item">{{item}} - Enrolled</li>
+	      {% endfor %}
+	      <br>
+	      {% for item in coursesAvailable %}
+	      <form action="/addCourse" method="post">
+		<label for="{{item}}">{{item}}</label>
+		<button id="{{item}}" name="course" type="Submit"
+			value="{{item}}">Add</button>
+		<br>
+		</form>
+	      {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+     </div>
 
 
     <script>
