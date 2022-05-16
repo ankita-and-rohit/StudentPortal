@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- Include jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <!-- Include Date Range Picker -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
   <style>
     body {
       background-image: url("{{ url_for('static', filename='missioncollege.jpg') }}");
@@ -22,7 +32,7 @@
     }
 
     .div-center {
-      width: 400px;
+      width: 600px;
       height: 400px;
       background-color: #fff;
       position: absolute;
@@ -58,48 +68,178 @@
 </head>
 
 <body>
-  <div class="back">
+  <div class="container">
     <div class="div-center">
       <div class="content">
-        <h3>Registration</h3>
+        <h3>Application Form</h3>
+        <h5>Please fill in the college application form below if you want to attend our institution. Thank you!</h5>
         <hr />
 
-        <form class="form-group" action="/register" method="post">
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
-          </div>
-          <div class="form-group">
-            <label for="pwd1">Password</label>
-            <input type="password" class="form-control" name="pwd1" placeholder="Enter Password" required>
-          </div>
-          <div class="form-group">
-            <label for="pwd2">Repeat Password</label>
-            <input type="password" class="form-control" name="pwd2" placeholder="Repeat Password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Register</button>
+        <form class="form-group" action="/apply" method="post">
 
-          {% if msg %}
-          <div class="form-group">
-            {% if error %}
-            <div class="alert alert-danger">
-            {% else %}
-            <div class="alert alert-success">
-            {% endif %}
-              {{msg}}
+          <!--NAME-->
+          <label>Name</label>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fname" placeholder="First" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="mname" placeholder="Middle" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="lname" placeholder="Last" required>
+              </div>
             </div>
           </div>
-          {% endif %}
 
-          <hr />
-          <label>Already have an account?</label>
-          <a href="/">
-            <button type="button" class="btn btn-primary">Back to Login</button>
-          </a>
+          <!--DATE OF BIRTH & PHONE-->
+          <div class="row">
+
+            <div class="col-sm-4">
+              <label>Date of Birth</label>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar">
+                    </i>
+                  </div>
+                  <input class="form-control" id="date" name="dob" placeholder="MM/DD/YYYY" type="date" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Phone</label>
+              <div class="form-group">
+                <input class="form-control" type="tel" id="phone" name="phone" placeholder="###-###-####"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Gender</label>
+              <div class="form-group">
+                <select class="form-control" name="gender" required>
+                  <option value="" disabled selected hidden></option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <!--HOME ADDRESS-->
+          <label>Home Address</label>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="form-group">
+                <input type="text" class="form-control" name="street" placeholder="Street Address" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="City" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="state" placeholder="State" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" pattern=[0-9]{5} class="form-control" name="zip" placeholder="ZIP Code" required>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="country" placeholder="Country" required>
+              </div>
+            </div>
+          </div>
+
+          <!--EMAIL-->
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Email</label>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label>Password</label>
+              <div class="form-group">
+                <input type="password" class="form-control" name="pwd" placeholder="Password" required>
+              </div>
+            </div>
+          </div>
+
+          <!--PROGRAM-->
+          <label>Program</label>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <select class="form-control" name="program" required>
+                  <option value="" disabled selected hidden></option>
+                  {% for program in programs %}
+                  <option value="{{program[0]}}">{{program[1]}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="password" class="form-control" name="cpwd" placeholder="Confirm Password" required>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="container-fluid">
+
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+            {% if msg %}
+            <div class="form-group">
+              {% if error == 'True' %}
+              <div class="alert alert-danger">
+                {% else %}
+                <div class="alert alert-success">
+                  {% endif %}
+                  {{msg}}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+
+            <hr />
+            <label>Already have an account?</label>
+            <a href="/">
+              <button type="button" class="btn btn-primary">Back to Login</button>
+            </a>
+          </div>
+
         </form>
+
       </div>
-      </span>
     </div>
+  </div>
 </body>
 
 </html>
