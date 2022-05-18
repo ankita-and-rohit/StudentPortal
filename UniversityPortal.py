@@ -40,6 +40,12 @@ def init():
         cur.execute("""INSERT INTO courses (name) VALUES ("Astronomy");""")
         cur.execute("""INSERT INTO courses (name) VALUES ("Biology");""")
         cur.execute("""INSERT INTO courses (name) VALUES ("Computer Information Systems");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("Calulus");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("Physics");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("Chemistry");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("Economics");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("English Literature");""")
+        cur.execute("""INSERT INTO courses (name) VALUES ("Spanish");""")
     conn.commit()
 
 def check_duplicate(email):
